@@ -299,4 +299,50 @@ Administrators can configure key parameters that control the quotation process:
 - Docker Hub image management.
 - Cloud deployment through Railway.
 
+## 📸 Screenshots
 
+### 🔐 Authentication
+
+Secure access to the administration area using Spring Security.
+
+![Login](images/login.png)
+
+---
+
+### 🚗 Automotive Financing Simulation
+
+The main quotation interface allows users to configure the vehicle, financing parameters, and product conditions to generate an automotive financing proposal.
+
+![Automotive Financing Simulation](images/simulador.png)
+
+---
+
+### 📊 Amortization Schedule
+
+The platform generates a detailed amortization schedule based on the selected financing conditions, including payment dates, principal, interest, charges, and outstanding balance.
+
+![Amortization Schedule](images/amortization-tabl.png)
+
+---
+
+### ⚙️ Business Rules Administration
+
+Authorized administrators can configure the parameters that control the quotation process, including payment due dates, vehicle eligibility rules, and automatic processes.
+
+![Business Rules](images/business-rules.png)
+
+---
+
+### 📈 Interest Rate Management
+
+The administration module allows authorized users to manage the interest-rate parameters used by the financial calculation engine, including the configurable financial margin used in variable-rate calculations.
+
+![Interest Rate Management](images/rates-management.png)
+
+---
+
+### 📄 PDF Quotation
+
+The generated quotation can be exported as a professional PDF document containing the financing information and amortization schedule.
+
+![PDF Quotation](images/pdf-report.png)
