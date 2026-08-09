@@ -345,4 +345,4 @@ The administration module allows authorized users to manage the interest-rate pa
 
 The generated quotation can be exported as a professional PDF document containing the financing information and amortization schedule.
 
-![PDF Quotation](images/pdf-report.png)
+![PDF Quotation](images/amortization-table_PDF.png)
