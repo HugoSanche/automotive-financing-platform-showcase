@@ -34,3 +34,21 @@ A cloud-native web application developed with **Spring Boot 3** that automates a
 ![JasperReports](https://img.shields.io/badge/JasperReports-PDF-red?style=for-the-badge)
 
 </div>
+## 📌 Business Problem
+
+Automotive financing requires accurate and flexible calculations that can adapt to different financial products, vehicle conditions, interest rates, and business rules.
+
+Traditional quotation processes can involve manual calculations and multiple sources of information, making the process time-consuming and increasing the risk of inconsistencies.
+
+The **Automotive Financing Platform** was designed to provide a centralized solution for generating automotive financing and leasing quotations while allowing business users to manage the rules and parameters that control the calculation process.
+
+### Business objectives
+
+- Automate automotive financing calculations.
+- Support different financing and leasing scenarios.
+- Generate detailed amortization schedules.
+- Centralize interest rate management.
+- Configure business rules without modifying application code.
+- Generate professional PDF quotation documents.
+- Provide secure access to administrative functionality.
+- Maintain a clear separation between business logic, persistence, security, and presentation.
