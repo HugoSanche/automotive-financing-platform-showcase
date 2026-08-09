@@ -1,10 +1,10 @@
-<div align="center">
+
 
 # 🚗 Automotive Financing Platform
 
 ### Enterprise Web Application for Automotive Financing & Leasing
 
-A cloud-native web application developed with **Spring Boot 3** that automates automotive financing quotations, leasing calculations, business rule management, and secure PDF proposal generation.
+A cloud-deployed web application developed with Spring Boot 3 that automates automotive financing quotations, leasing calculations, business rule management, and secure PDF proposal generation.
 
 ---
 
@@ -33,7 +33,8 @@ A cloud-native web application developed with **Spring Boot 3** that automates a
 ![Railway](https://img.shields.io/badge/Railway-Cloud-black?style=for-the-badge)
 ![JasperReports](https://img.shields.io/badge/JasperReports-PDF-red?style=for-the-badge)
 
-</div>
+
+
 ## 📌 Business Problem
 
 Automotive financing requires accurate and flexible calculations that can adapt to different financial products, vehicle conditions, interest rates, and business rules.
