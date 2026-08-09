@@ -228,3 +228,75 @@ The main components of the solution are:
 ### API Documentation
 
 Selected REST endpoints are documented using **OpenAPI / Swagger**, providing an interactive interface for exploring and testing the application's APIs.
+
+## ✨ Key Features
+
+### 🚗 Automotive Financing Simulation
+
+- Automotive credit quotation generation.
+- New and used vehicle financing.
+- Vehicle brand, model, and year selection.
+- Configurable financing terms.
+- Down payment configuration.
+- Fixed-rate financing.
+- Variable-rate financing.
+- Pure leasing with residual value.
+- Detailed amortization schedules.
+
+### 📊 Financial Calculation Engine
+
+- Automated payment calculation.
+- Interest and principal breakdown.
+- Payment schedule generation.
+- Configurable payment due dates.
+- Residual balance calculation for leasing scenarios.
+- Support for configurable financial margins.
+
+### ⚙️ Business Rules Administration
+
+Administrators can configure key parameters that control the quotation process:
+
+- Payment due day.
+- Maximum vehicle age for financing.
+- Financial margin for variable-rate products.
+- Automatic processes.
+- Residual value configuration.
+
+### 📈 Variable Rate Integration
+
+- Reference rate retrieval through BANXICO integration.
+- Configurable financial margin.
+- Dynamic base-rate calculation.
+- Integration of external financial data into the quotation engine.
+
+### 📄 PDF Reports
+
+- Professional quotation document generation.
+- Amortization schedule included in generated reports.
+- JasperReports integration.
+- Protected report access using JWT-based tokens.
+
+### 🔐 Authentication & Authorization
+
+- Spring Security integration.
+- Secure administrative area.
+- Role-based authorization.
+- Session-based authentication for web administration.
+- JWT authentication for selected REST services.
+- JWT-protected report access.
+
+### 🌐 REST API
+
+- REST endpoints for selected application services.
+- OpenAPI / Swagger documentation.
+- Interactive API exploration and testing.
+
+### 🐳 Containerized Deployment
+
+- Dockerized Spring Boot application.
+- Docker Compose environment for local development.
+- MySQL container for local persistence.
+- Docker Hub image management.
+- Cloud deployment through Railway.
+
+
