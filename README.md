@@ -87,15 +87,35 @@ The calculation engine processes the quotation parameters and generates the corr
 
 #### ⚙️ Business Rules Management
 
-Administrative users can configure business parameters that influence the quotation process, including:
+The platform provides configurable business rules that allow administrators to control parameters used during the automotive financing process.
 
-- Interest rates.
-- Payment days.
-- Vehicle age rules.
-- Automatic processes.
-- Other configurable business parameters.
+##### Payment Due Day
 
-This approach allows business rules to be modified without requiring changes to the application's source code.
+Administrators can define the payment due day used to generate the amortization schedule.
+
+For example, if the configured payment day is **15**, the generated amortization schedule will use the 15th day of each corresponding payment period as the due date.
+
+This allows the platform to support different business policies, such as payment schedules with due dates on the 1st, 15th, or another configured day of the month.
+
+##### Used Vehicle Eligibility
+
+The platform allows administrators to configure the maximum vehicle age accepted for automotive financing.
+
+This rule is particularly relevant for used vehicles, where financing institutions may establish an age limit as part of their credit policies.
+
+For example, if the configured maximum vehicle age is **8 years**, vehicles exceeding the applicable age policy are not considered eligible for financing.
+
+##### Automatic Processes
+
+The platform provides a configurable list of processes that can be executed by the system.
+
+Currently, the implemented process is related to **Residual Value** for pure leasing.
+
+In a pure leasing scenario, the residual value represents the amount that remains outstanding at the end of the financing term.
+
+For example, for a vehicle valued at **$1,000,000** with a residual value of **$400,000**, the amortization schedule is structured so that the final outstanding balance is $400,000.
+
+At the end of the lease, the customer has the right to purchase the vehicle for the configured residual value.
 
 #### 📄 PDF Quotation Generation
 
@@ -112,3 +132,17 @@ The application also exposes REST endpoints secured through JWT authentication f
 #### 🌐 External Integration
 
 The application integrates with **BANXICO** services through Spring WebClient to retrieve financial information used by the platform.
+
+#### 📈 Variable Rate Calculation
+
+For variable-rate financing, the platform retrieves the applicable reference rate from **BANXICO** and combines it with a configurable financial margin.
+
+The calculation follows the business rule:
+
+**Base Rate = BANXICO Reference Rate + Financial Margin**
+
+The resulting base rate is then used by the calculation engine to generate the corresponding amortization schedule.
+
+The financial margin is configurable through the administration module, allowing the business user to adjust the spread applied to the reference rate without modifying the application source code.
+
+
