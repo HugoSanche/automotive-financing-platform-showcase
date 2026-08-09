@@ -145,4 +145,23 @@ The resulting base rate is then used by the calculation engine to generate the c
 
 The financial margin is configurable through the administration module, allowing the business user to adjust the spread applied to the reference rate without modifying the application source code.
 
+## 🏗️ Architecture
 
+The **Automotive Financing Platform** follows a layered architecture designed to separate presentation, business logic, security, and data persistence responsibilities.
+
+The application is built as a **Spring Boot 3 monolithic web application**, using Thymeleaf for the web interface and exposing selected REST endpoints for API-based operations.
+
+### Architecture Overview
+
+![Architecture Overview](images/architecture-overview.png)
+
+The main components of the solution are:
+
+- **Presentation Layer** — Thymeleaf, HTML, CSS and Bootstrap provide the web interface.
+- **Controller Layer** — Spring MVC controllers handle HTTP requests and coordinate application flows.
+- **Business Layer** — Facades and services encapsulate financial calculations, business rules, leads, rates, and report generation.
+- **Persistence Layer** — Spring Data JPA and Hibernate provide ORM capabilities for interacting with MySQL.
+- **Security Layer** — Spring Security provides authentication and authorization, while JWT is used for selected REST services and protected report operations.
+- **Reporting** — JasperReports generates PDF quotation documents.
+- **External Integration** — Spring WebClient is used to retrieve reference rate information from BANXICO.
+- **Database** — MySQL stores quotations, vehicles, rates, business rules, users, and related application data.
