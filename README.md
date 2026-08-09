@@ -10,6 +10,11 @@ A cloud-native web application developed with **Spring Boot 3** that automates a
 
 ### 🌐 Live Demo
 
+> **Demo Environment**
+>
+> This application is deployed on Railway for demonstration purposes.
+> Some administrative features require authentication.
+
 > https://cotizador-production-0680.up.railway.app/creditos/automotriz/simulador
 
 ---
