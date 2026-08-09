@@ -346,3 +346,154 @@ The administration module allows authorized users to manage the interest-rate pa
 The generated quotation can be exported as a professional PDF document containing the financing information and amortization schedule.
 
 ![PDF Quotation](images/amortization-table_PDF.png)
+
+## 🔒 Security Architecture
+
+The platform implements multiple security mechanisms depending on the type of resource being accessed.
+
+### Web Application Security
+
+The administrative web application uses **Spring Security** for authentication and authorization.
+
+The administration area is protected through role-based access control, ensuring that only authorized users can access configuration and management functionality.
+
+```text
+User
+  │
+  ▼
+Spring Security
+  │
+  ├── Authentication
+  │
+  └── Role-based Authorization
+          │
+          ▼
+    Administration
+```
+
+### JWT Authentication
+
+Selected REST services use **JWT-based authentication** to support stateless API access.
+
+```text
+Client
+  │
+  │ Login credentials
+  ▼
+Authentication Endpoint
+  │
+  ▼
+JWT Token
+  │
+  ▼
+Protected REST Endpoint
+  │
+  ▼
+JWT Validation
+  │
+  ▼
+Authorized Request
+```
+
+### Protected PDF Reports
+
+PDF report generation uses a dedicated JWT-based token mechanism.
+
+The application generates a short-lived token associated with the requested quotation, which is then used to securely access the generated report.
+
+```text
+Quotation Request
+       │
+       ▼
+Generate Report Token
+       │
+       ▼
+Short-lived JWT
+       │
+       ▼
+Protected PDF Endpoint
+       │
+       ▼
+JasperReports
+       │
+       ▼
+PDF Document
+```
+
+### Security Principles
+
+The security implementation follows these principles:
+
+- Role-based authorization for administrative functionality.
+- Stateless JWT authentication for selected REST services.
+- Short-lived tokens for protected report access.
+- Secrets provided through environment variables.
+- Separation between authentication, authorization, and business logic.
+
+## 🚀 Deployment
+
+The application is fully containerized using Docker and deployed to the cloud using Railway.
+
+The deployment architecture consists of:
+
+- Spring Boot application packaged as a Docker image.
+- Docker Hub as the container registry.
+- Railway as the cloud hosting platform.
+- MySQL as the relational database.
+- Environment variables for secure configuration management.
+
+### Deployment Workflow
+
+```text
+Developer
+     │
+     ▼
+ Maven Build
+     │
+     ▼
+ Docker Image
+     │
+     ▼
+ Docker Hub
+     │
+     ▼
+ Railway Deployment
+     │
+     ▼
+ Production Environment
+```
+
+### Environment Variables
+
+The application uses environment variables for sensitive configuration.
+
+| Variable | Description |
+|-----------|-------------|
+| DB_URL | Database connection URL |
+| DB_USER | Database username |
+| DB_PASSWORD | Database password |
+| JWT_SECRET | JWT signing secret |
+| REPORT_JWT_SECRET | Report JWT signing secret |
+
+> Sensitive values are intentionally omitted from this repository.
+
+### Deployment Highlights
+
+- ✅ Dockerized Spring Boot application
+- ✅ Cloud deployment on Railway
+- ✅ Environment-based configuration
+- ✅ Container image versioning
+- ✅ Separate development and production environments
+
+### Live Demo
+
+The latest deployed version is available at:
+
+https://cotizador-production-0680.up.railway.app/creditos/automotriz/simulador
+
+### Containerization
+
+The application runs inside a Docker container, ensuring a consistent execution environment across local development and cloud deployment.
+
+Containerization also simplifies versioning, portability, and deployment automation.
+
