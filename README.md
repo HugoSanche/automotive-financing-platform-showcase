@@ -166,3 +166,65 @@ The main components of the solution are:
 - **Reporting** — JasperReports generates PDF quotation documents.
 - **External Integration** — Spring WebClient is used to retrieve reference rate information from BANXICO.
 - **Database** — MySQL stores quotations, vehicles, rates, business rules, users, and related application data.
+
+## 🛠️ Technology Stack
+
+### Backend
+
+| Technology | Purpose |
+|---|---|
+| **Java 17** | Application development language |
+| **Spring Boot 3.3** | Application framework |
+| **Spring MVC** | Web and REST request handling |
+| **Spring Data JPA** | Data access and persistence |
+| **Hibernate** | ORM and entity management |
+| **Maven** | Dependency management and build automation |
+
+### Frontend
+
+| Technology | Purpose |
+|---|---|
+| **Thymeleaf** | Server-side HTML rendering |
+| **Bootstrap 5** | Responsive user interface |
+| **HTML5 / CSS3** | Web presentation |
+
+### Database
+
+| Technology | Purpose |
+|---|---|
+| **MySQL 8** | Relational database |
+| **JPA / Hibernate** | Object-relational mapping |
+
+### Security
+
+| Technology | Purpose |
+|---|---|
+| **Spring Security** | Authentication and authorization |
+| **JWT** | Stateless authentication for selected REST services and protected report operations |
+
+### Reporting
+
+| Technology | Purpose |
+|---|---|
+| **JasperReports** | PDF quotation generation |
+
+### External Integration
+
+| Technology | Purpose |
+|---|---|
+| **Spring WebClient** | HTTP client for external API integration |
+| **BANXICO API** | Reference rate information used in variable-rate calculations |
+
+### DevOps & Deployment
+
+| Technology | Purpose |
+|---|---|
+| **Docker** | Application containerization |
+| **Docker Compose** | Local multi-container development environment |
+| **Docker Hub** | Container image registry |
+| **Railway** | Cloud deployment and hosting |
+| **Git** | Version control |
+
+### API Documentation
+
+Selected REST endpoints are documented using **OpenAPI / Swagger**, providing an interactive interface for exploring and testing the application's APIs.
