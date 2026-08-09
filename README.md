@@ -497,3 +497,143 @@ The application runs inside a Docker container, ensuring a consistent execution 
 
 Containerization also simplifies versioning, portability, and deployment automation.
 
+## 🌐 API Documentation
+
+The **Automotive Financing Platform** exposes REST endpoints for selected application services.
+
+The API is documented using **OpenAPI / Swagger**, providing an interactive interface for exploring endpoints, reviewing request and response schemas, and testing API operations.
+
+### API Modules
+
+| Module | Description |
+|---|---|
+| **Authentication** | User authentication and JWT token generation |
+| **Rates** | Interest-rate management and retrieval |
+| **Automotive Financing** | Services related to automotive credit quotations |
+| **Vehicles** | Vehicle brands, models, and related information |
+| **Leads** | Lead and quotation-related operations |
+| **Reports** | Secure report-token generation and PDF report access |
+
+### API Capabilities
+
+- RESTful HTTP endpoints.
+- OpenAPI-based documentation.
+- Interactive Swagger UI.
+- Request parameter documentation.
+- Response schema documentation.
+- JWT authentication for selected protected endpoints.
+- HTTP status and error response documentation.
+
+### Swagger UI
+
+When running the application locally, the API documentation is available through Swagger UI:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+The Swagger interface allows developers to inspect and test the available API operations directly from the browser.
+
+> **Note:** API documentation and endpoint availability may vary between development and production environments.
+
+## 🐳 Deployment & Infrastructure
+
+The application is containerized using **Docker** and deployed to the cloud through **Railway**.
+
+### Deployment Architecture
+
+```text
+Developer Workstation
+        │
+        │ Maven Build
+        ▼
+   Spring Boot JAR
+        │
+        │ Docker Build
+        ▼
+   Docker Image
+        │
+        │ Push
+        ▼
+     Docker Hub
+        │
+        │ Deploy
+        ▼
+      Railway
+        │
+        ├───────────────┐
+        ▼               ▼
+ Spring Boot       MySQL Database
+ Application
+        │
+        ▼
+     BANXICO
+   External API
+```
+
+### Containerization
+
+The application is packaged as a Docker image containing the Spring Boot application and its runtime environment.
+
+The containerized approach provides:
+
+- Consistent application runtime.
+- Reproducible deployments.
+- Environment-based configuration.
+- Separation between application and infrastructure.
+- Simplified deployment across environments.
+
+### Local Development Environment
+
+Docker Compose is used to run the application and MySQL database locally.
+
+```text
+Docker Compose
+      │
+      ├── Spring Boot Application
+      │        │
+      │        ▼
+      │     MySQL
+      │
+      └── Network
+```
+
+Database credentials and application configuration are provided through environment variables rather than hard-coded application properties.
+
+### Cloud Deployment
+
+The application is deployed to **Railway** using the Docker container image.
+
+The deployment environment provides the required runtime configuration through environment variables, including:
+
+- Database connection URL.
+- Database username and password.
+- JWT signing secret.
+- Report JWT signing secret.
+- Application port.
+
+### Container Image Management
+
+Docker images are built locally and published to **Docker Hub** before being deployed to the cloud environment.
+
+This provides a clear separation between:
+
+```text
+Source Code
+     ↓
+Build
+     ↓
+Docker Image
+     ↓
+Container Registry
+     ↓
+Cloud Deployment
+```
+
+### Environment Configuration
+
+Environment-specific configuration is externalized from the application source code.
+
+Sensitive values such as database credentials and JWT secrets are injected at runtime through environment variables.
+
+This prevents credentials and cryptographic secrets from being committed to the source repository.
