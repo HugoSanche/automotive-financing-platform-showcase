@@ -637,3 +637,205 @@ Environment-specific configuration is externalized from the application source c
 Sensitive values such as database credentials and JWT secrets are injected at runtime through environment variables.
 
 This prevents credentials and cryptographic secrets from being committed to the source repository.
+
+## 🧩 Project Structure
+
+The application follows a layered structure that separates presentation, business logic, persistence, security, and integration responsibilities.
+
+```text
+
+src/
+└── main/
+    ├── java/
+    │   └── com/
+    │       └── cotizador/
+    │            ├─ configuration
+    │            │  └─WebClientConfig                         [class]  
+    │            ├─ controller
+    │            │  └─api
+    │            │   │    └─ RateApiController                [class]
+    │            │   │    └─ RateViewController               [class]
+    │            │   └─report
+    │            │   │   └─ ReportController                  [class]
+    │            │   ├─ AdminController                       [class]
+    │            │   ├─ IndividualController                  [class]
+    │            │   ├─ LoginController                       [class]
+    │            │   ├─ PaymentCalculatorController           [class]
+    │            │
+    │            │
+    │            ├── dao/
+    │            │   ├── BrandsDAO.java                       [interface]
+    │            │   ├── BrandsDAOImp.java                    [class]
+    │            │   ├── ChargesDAO.java                      [interface]
+    │            │   ├── ChargesDAOImp.java                   [class]
+    │            │   ├── ChargesReceivableDAO.java            [interface]
+    │            │   ├── ChargesReceivableDAOImp.java         [class]
+    │            │   ├── HolidayRepository.java               [interface]
+    │            │   ├── IndividualDAO.java                   [interface]
+    │            │   ├── IndividualDAOImp.java                [class]
+    │            │   ├── LegalEntitiesDAO.java                [interface]
+    │            │   ├── LegalEntitiesDAOImp.java             [class]
+    │            │   ├── ModelsDAO.java                       [interface]
+    │            │   ├── ModelsDAOImp.java                    [class]
+    │            │   ├── PaymentcalculatorDAO.java            [interface]
+    │            │   ├── PaymentcalculatorDAOImp.java         [class]
+    │            │   ├── PaymentDayDAO.java                   [interface]
+    │            │   ├── PaymentDayImp.java                   [class]
+    │            │   ├── ProcessDAO.java                      [interface]
+    │            │   ├── ProcessDAOImp.java                   [class]
+    │            │   ├── RateDAO.java                         [interface]
+    │            │   ├── RateDAOImp.java                      [class]
+    │            │   ├── ResidualValueDAO.java                [interface]
+    │            │   ├── ResidualValueDAOImp.java             [class]
+    │            │   ├── RoleDAO.java                         [interface]
+    │            │   ├── RoleDAOImp.java                      [class]
+    │            │   ├── ScheduledPaymentDAO.java             [interface]
+    │            │   ├── ScheduledPaymentDAOJpaImp.java       [class]
+    │            │   ├── SpreadDAO.java                       [interface]
+    │            │   ├── SpreadDAOImp.java                    [class]
+    │            │   ├── TaxesDAO.java                        [interface]
+    │            │   ├── TaxesDAOImp.java                     [class]
+    │            │   ├── UsersDAO.java                        [interface]
+    │            │   ├── UsersDAOImp.java                     [class]
+    │            │   ├── VehicleYearsDAO.java                 [interface]
+    │            │   └── VehicleYearsDAO.java                 [class]
+    │            │
+    │            ├── entity/
+    │            │   ├── BrandsDAOImp.java                    [class]      
+    │            │   ├── ChargesDAOImp.java                   [class]
+    │            │   ├── ChargesReceivableDAOImp.java         [class]
+    │            │   ├── IndividualDAOImp.java                [class]
+    │            │   ├── LegalEntitiesDAOImp.java             [class]
+    │            │   ├── ModelsDAOImp.java                    [class]
+    │            │   ├── PaymentcalculatorDAOImp.java         [class]
+    │            │   ├── PaymentDayImp.java                   [class]
+    │            │   ├── ProcessDAOImp.java                   [class]
+    │            │   ├── RateDAOImp.java                      [class]
+    │            │   ├── ResidualValueDAOImp.java             [class]
+    │            │   ├── RoleDAOImp.java                      [class]
+    │            │   ├── ScheduledPaymentDAOJpaImp.java       [class]
+    │            │   ├── SpreadDAOImp.java                    [class]
+    │            │   ├── TaxesDAOImp.java                     [class]
+    │            │   ├── UsersDAOImp.java                     [class]
+    │            │   └── VehicleYearsDAO.java                 [class]
+    │            ├── exception/
+    │            │   ├── CustomException.java                 [class]      
+    │            │   ├── PaymentCalculatorErrorResponse.java  [class]
+    │            │   ├── PaymentCalculatorNotFoundException.java  [class]
+    │            │   └── PaymentCalculatorRestExceptionHandler.java [class]
+    │            ├── integration
+    │            │   │    └─banxico
+    │            │   │      └─ BanxicoTiieeClient                  [class]
+    │            │   │
+    │            ├── security/
+    │            │   │    └─jwt
+    │            │   │       └─ SecurityConfig                     [class]
+    │            │── service/
+    │            │    ├── calculator/
+    │            │    │      ├── FrenchInterestService.java        [class]      
+    │            │    │      ├── InterestCalculator.java           [interface]
+    │            │    │      └── PaymentCalculatorFactory.java     [class]
+    │            │    ├── charges/
+    │            │    │      ├── ChargeCalculatorProvider.java     [interface]      
+    │            │    │      ├── ChargeService.java                [interface]
+    │            │    │      ├── ChargeServiceImp.java             [class]      
+    │            │    │      ├── ChargesReceivableService.java     [interface]
+    │            │    │      ├── ChargesReceivableServiceImp.java  [class]      
+    │            │    │      └── OpeningCommissionCalculator.java  [class]
+    │            │    ├── facade/
+    │            │    │      ├── LeadFacade.java                  [class]      
+    │            │    │      ├── LeadSummaryFacade.java           [class]
+    │            │    │      └── PaymentCalculatorFacde.java      [class]
+    │            │    ├── rate/
+    │            │    │      └── TiieDateService.java             [class]   
+    │            │    │
+    │            │    ├── BrandService.java                       [interface]
+    │            │    ├── BrandServiceImp.java                    [class]
+    │            │    ├── IndividualService.java                  [interface]
+    │            │    ├── IndividualServiceImp.java               [class]
+    │            │    ├── InterestDateService.java                [class]
+    │            │    ├── LeadSummaryService.java                 [class]
+    │            │    ├── LegalEntityService.java                 [interface]
+    │            │    ├── LegalEntityServiceImp.java              [class]
+    │            │    ├── ModelService.java                       [interface]
+    │            │    ├── ModelServiceImp.java                    [class]
+    │            │    ├── PaymentcalculatorService.java           [interface]
+    │            │    ├── PaymentcalculatorServiceImp.java        [class]
+    │            │    ├── PaymentDayService.java                  [interface]
+    │            │    ├── PaymentDayServiceImp.java               [class]
+    │            │    ├── ProcessService.java                     [interface]
+    │            │    ├── ProcessServiceImp.java                  [class]
+    │            │    ├── RateService.java                        [interface]
+    │            │    ├── RateServiceImp.java                     [class]
+    │            │    ├── ReportPDFService.java                   [class] 
+    │            │    ├── ReportTokenService.java                 [class]
+    │            │    ├── ResidualValueService.java               [interface]
+    │            │    ├── ResidualValueServiceImp.java            [class]
+    │            │    ├── RoleService.java                        [interface]
+    │            │    ├── RoleServiceImp.java                     [class]
+    │            │    ├── ScheduledPaymentService.java            [interface]
+    │            │    ├── ScheduledPaymentServiceJpaImp.java      [class]
+    │            │    ├── SpreadService.java                      [interface]
+    │            │    ├── SpreadServiceImp.java                   [class]
+    │            │    ├── TaxeService.java                        [interface]
+    │            │    ├── TaxeServiceImp.java                     [class]
+    │            │    ├── UserService.java                        [interface]
+    │            │    ├── UserServiceImp.java                     [class]
+    │            │    ├── VehicleYearService.java                 [interface]
+    │            │    └── VehicleYearsServiceImp.java             [class]
+    │            └── validator/
+    │                ├── IndividualFormValidator.java             [class]      
+    │                ├── IntValidator.java                        [class]
+    │                └── ValidIndividualForm.java                 [interface]
+    │
+    └── resources/
+        ├── reports/
+        ├── static/
+        ├── templates/
+        └── application.properties
+```
+
+### Package Responsibilities
+
+| Package | Responsibility |
+|---|---|
+| `controller` | Handles HTTP requests and coordinates application flows. |
+| `service` | Contains application and business logic. |
+| `service.calculator` | Implements the financial calculation and quotation logic. |
+| `service.facade` | Provides application-level orchestration between controllers and business services. |
+| `service.rate` | Handles interest-rate related services and external rate integration. |
+| `dao` | Provides data-access functionality and custom persistence operations. |
+| `entity` | Contains JPA entities representing the application's domain model. |
+| `security` | Contains Spring Security and JWT-related configuration and components. |
+| `resources/templates` | Contains Thymeleaf templates used by the web interface. |
+| `resources/reports` | Contains compiled JasperReports templates used to generate PDF documents. |
+| `resources/static` | Contains static web resources such as CSS, JavaScript, and other frontend assets. |
+
+### Application Layers
+
+The main application responsibilities can be summarized as:
+
+```text
+┌─────────────────────────────┐
+│       Presentation          │
+│   Thymeleaf / Controllers   │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│       Business Layer        │
+│ Services / Facades /        │
+│ Financial Calculation       │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│       Persistence           │
+│       DAO / JPA / Hibernate  │
+└──────────────┬──────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│           MySQL             │
+└─────────────────────────────┘
+```
