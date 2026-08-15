@@ -839,3 +839,148 @@ The main application responsibilities can be summarized as:
 │           MySQL             │
 └─────────────────────────────┘
 ```
+
+
+## 🧮 Financial Calculation Flow
+
+
+The quotation process is designed to separate request handling, business orchestration, financial calculation, and persistence.
+
+
+A simplified flow is:
+
+
+```text
+User
+  │
+  ▼
+Quotation Request
+  │
+  ▼
+PaymentCalculatorController
+  │
+  ▼
+PaymentCalculatorFacade
+  │
+  ▼
+PaymentCalculatorFactory
+  │
+  ├──────────────────────┬──────────────────────┐
+  ▼                      ▼                      ▼
+Fixed Rate           Variable Rate        Pure Leasing
+Calculation          Calculation          Calculation
+  │                      │                      │
+  │                      ▼                      │
+  │                 BANXICO Rate               │
+  │                      +                     │
+  │                Financial Margin            │
+  │                      │                      │
+  └──────────────────────┴──────────────────────┘
+                         │
+                         ▼
+               QuoteCalculatorService
+                         │
+                         ▼
+              Amortization Schedule
+                         │
+                         ├── Payment Date
+                         ├── Principal
+                         ├── Interest
+                         ├── Charges
+                         ├── Residual Value
+                         └── Outstanding Balance
+                         │
+                         ▼
+                  Persistence Layer
+                         │
+                         ▼
+                       MySQL
+Financing Scenarios
+
+The calculation engine supports different financing scenarios:
+
+Fixed Rate
+
+The configured fixed interest rate is used as the basis for calculating the periodic payments and amortization schedule.
+
+Variable Rate
+
+For variable-rate financing, the calculation uses a reference rate obtained through the BANXICO integration and adds the configurable financial margin:
+
+Base Rate = BANXICO Reference Rate + Financial Margin
+
+The resulting base rate is then used by the calculation engine to generate the amortization schedule.
+
+Pure Leasing with Residual Value
+
+For pure leasing scenarios, a residual value can be configured as a percentage of the vehicle value.
+
+For example:
+
+Vehicle Value:       $1,000,000
+Residual Value:        $400,000
+
+The residual amount remains as the final balance of the amortization schedule. At the end of the agreement, the customer may have the right to acquire the vehicle for the configured residual amount, according to the applicable contract conditions.
+
+Configurable Business Rules
+
+The calculation process also incorporates configurable business rules maintained through the administration module:
+
+Payment due day.
+Maximum vehicle age allowed for financing.
+Financial margin for variable-rate products.
+Residual value parameters.
+Automatic processes.
+
+This approach allows business parameters to be modified without changing the core calculation logic.
+
+
+
+### Hay una razón por la que pondría esta sección
+
+
+Tu proyecto se puede entender ahora en **tres niveles**:
+
+
+```text
+                    USER
+                      │
+                      ▼
+              Business Request
+                      │
+                      ▼
+              ┌───────────────┐
+              │  Application  │
+              │    Layer      │
+              └───────┬───────┘
+                      │
+                      ▼
+              ┌───────────────┐
+              │   Financial   │
+              │ Calculation   │
+              │    Engine     │
+              └───────┬───────┘
+                      │
+             ┌────────┼────────┐
+             ▼        ▼        ▼
+           Fixed   Variable  Leasing
+            Rate     Rate    + Residual
+             │        │        │
+             └────────┼────────┘
+                      ▼
+             Amortization Table
+                      │
+                      ▼
+                    MySQL
+
+Eso comunica mucho mejor tu experiencia con crédito automotriz y lógica financiera, que simplemente mencionar Java + Spring Boot + MySQL.
+
+Una corrección importante
+
+En el README no pondría todavía fórmulas matemáticas específicas para calcular la mensualidad, interés, capital, etc., porque no hemos revisado el código exacto de QuoteCalculatorService. No quiero que el README termine describiendo una fórmula que no coincide exactamente con tu implementación.
+
+También mantendría la frase:
+
+"the customer may have the right to acquire the vehicle..."
+
+en lugar de afirmar que siempre puede comprarlo, porque eso depende de las condiciones contractuales del arrendamiento.
