@@ -1118,3 +1118,107 @@ The application was developed and tested locally using:
 The application can also be packaged as a Docker image and deployed to a cloud environment.
 
 > **Note:** The complete source code and environment-specific configuration are intentionally not included in this public showcase repository.
+
+## 🎯 Project Goals & Future Improvements
+
+The main goal of the project is to evolve the **Automotive Financing Platform** into a more complete financial quotation and customer engagement solution while continuing to improve its architecture, testing strategy, and business capabilities.
+
+### 🧪 Expand Automated Testing
+
+Continue increasing automated test coverage, with particular emphasis on the most business-critical components:
+
+* Financial calculation engine.
+* Fixed-rate calculations.
+* Variable-rate calculations.
+* Residual value calculations.
+* Business rule validation.
+* Early principal payments.
+* Security and JWT flows.
+* Database integration tests.
+* End-to-end quotation workflows.
+
+### 💰 Early Principal Payments
+
+Implement support for additional principal payments during the financing term.
+
+For example, a customer could make an additional **$30,000 principal payment in December**. The system would recalculate the remaining amortization schedule based on the new outstanding principal balance.
+
+The feature could support different recalculation strategies, such as:
+
+* Reducing the remaining term while maintaining a similar payment amount.
+* Reducing the periodic payment while maintaining the original term.
+* Allowing the user to select the desired recalculation strategy.
+
+This functionality would extend the financial calculation engine beyond the initial quotation and allow the platform to model changes that occur during the life of a credit.
+
+### 📧 Email Quotation Delivery
+
+Allow customers to request their quotation to be delivered by email.
+
+The generated PDF quotation could be sent automatically after the calculation process, providing a convenient way for the prospect to retain and review the proposal.
+
+### 📱 Prospect Verification
+
+Evaluate the implementation of a one-time verification code sent to the prospect's mobile phone during the initial quotation process.
+
+The objective would be to verify that the provided contact information belongs to a real user and reduce invalid or automated submissions.
+
+The implementation would be designed to balance:
+
+* Prospect experience.
+* Fraud and abuse prevention.
+* Verification reliability.
+* Operational cost.
+
+### 👥 Prospect Management & Follow-up
+
+Introduce a centralized prospect report containing users who have generated quotations.
+
+The objective is to provide authorized users with a simple way to identify prospects who may require personal follow-up.
+
+Potential information could include:
+
+* Prospect information.
+* Contact details.
+* Date of quotation.
+* Vehicle information.
+* Financing product.
+* Quotation amount.
+* Financing term.
+* Quotation status.
+* Follow-up status.
+
+This could evolve into a lightweight lead-management workflow within the platform.
+
+### 📊 Flexible Financing Term Selection
+
+Improve the financing-term selector by replacing the current predefined options with a more flexible month-based control.
+
+A slider could allow users to select the desired financing term within the supported range while providing immediate visual feedback of the selected number of months.
+
+### 🏠 Additional Financial Products
+
+Expand the financial calculation engine beyond automotive financing.
+
+Potential future products include:
+
+* Mortgage financing.
+* Personal loans.
+* Other installment-based credit products.
+
+The objective would be to evolve the calculation architecture so that different financial products can reuse common calculation components while implementing their own product-specific rules.
+
+### 🔄 Continuous Architecture Improvement
+
+Continue improving the application's architecture and engineering practices through:
+
+* Increased automated testing.
+* Database migration management.
+* Improved API documentation.
+* CI/CD automation.
+* Improved observability and application monitoring.
+* Additional validation and error handling.
+* Refactoring toward greater separation of business rules and financial calculation logic.
+
+
+
