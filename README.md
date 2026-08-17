@@ -984,3 +984,137 @@ También mantendría la frase:
 "the customer may have the right to acquire the vehicle..."
 
 en lugar de afirmar que siempre puede comprarlo, porque eso depende de las condiciones contractuales del arrendamiento.
+
+
+🧪 Testing & Quality
+
+The project includes automated tests focused on validating service-layer behavior, business validations, exception handling, DAO interactions, and selected web-layer workflows.
+
+Testing Stack
+Technology	Purpose
+JUnit 5	Unit testing framework
+Mockito	Mocking dependencies and verifying interactions
+Spring MVC Test	Testing Spring MVC controllers using MockMvc
+Unit Testing
+
+Service-layer tests use JUnit 5 and Mockito to isolate business services from their data-access dependencies.
+
+Current tests cover services such as:
+
+Brand management.
+Charge management.
+Individual management.
+Vehicle model management.
+Payment calculator management.
+
+The tests cover scenarios including:
+
+Successful operations.
+Invalid identifiers.
+Null input validation.
+Entity-not-found scenarios.
+Create, update, and delete operations.
+DAO interaction verification.
+Expected exception handling.
+
+A typical service test isolates the DAO using Mockito:
+
+Service
+   │
+   │ uses
+   ▼
+Mock DAO
+   │
+   └── Controlled test response
+          │
+          ▼
+       Assertions
+          │
+          ▼
+   Interaction Verification
+Web Layer Testing
+
+Selected controller workflows are tested using Spring MVC Test and MockMvc.
+
+Current controller tests include scenarios such as:
+
+Form validation failures.
+Successful lead creation.
+View resolution.
+Service interaction verification.
+Facade interaction verification.
+
+This allows controller behavior to be tested without requiring the complete application context.
+
+Testing Approach
+
+The current testing strategy focuses on validating both successful and failure scenarios rather than only testing the expected "happy path".
+
+Examples include:
+
+Valid and invalid identifiers.
+Existing and non-existing entities.
+Null input.
+Validation failures.
+Expected exceptions.
+Verification that invalid requests do not reach the persistence layer.
+Testing Roadmap
+
+The testing strategy can be further expanded to provide broader coverage of the application's most critical components.
+
+Planned areas include:
+
+Financial calculation engine.
+Fixed-rate calculations.
+Variable-rate calculations.
+BANXICO rate integration.
+Residual value calculations.
+Business rule validation.
+Spring Security and JWT flows.
+Database integration tests.
+PDF report generation.
+End-to-end quotation workflows.
+
+## 🚀 Getting Started
+
+This repository is a **showcase and technical documentation project** for the Automotive Financing Platform.
+
+The complete application source code is maintained separately and is not included in this public repository.
+
+### 🌐 Explore the Live Application
+
+The platform is deployed on Railway and can be accessed through the following URL:
+
+**Live Demo:**  
+https://cotizador-production-0680.up.railway.app/creditos/automotriz/simulador
+
+The live environment allows visitors to explore the automotive financing quotation workflow and review the application's user interface and generated results.
+
+### 📚 Explore the Architecture
+
+This repository provides technical documentation covering:
+
+- Business problem and solution overview.
+- Application architecture.
+- Financial calculation flow.
+- Technology stack.
+- Security architecture.
+- REST API documentation.
+- Project structure.
+- Testing strategy.
+- Deployment infrastructure.
+
+### 🖥️ Running the Application
+
+The application was developed and tested locally using:
+
+- Java 17.
+- Spring Boot 3.3.
+- Maven.
+- MySQL 8.
+- Docker.
+- Docker Compose.
+
+The application can also be packaged as a Docker image and deployed to a cloud environment.
+
+> **Note:** The complete source code and environment-specific configuration are intentionally not included in this public showcase repository.
