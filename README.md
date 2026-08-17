@@ -698,7 +698,7 @@ src/
     │            │   ├── UsersDAO.java                        [interface]
     │            │   ├── UsersDAOImp.java                     [class]
     │            │   ├── VehicleYearsDAO.java                 [interface]
-    │            │   └── VehicleYearsDAO.java                 [class]
+    │            │   └── VehicleYearsDAOImpjava                 [class]
     │            │
     │            ├── entity/
     │            │   ├── BrandsDAOImp.java                    [class]      
