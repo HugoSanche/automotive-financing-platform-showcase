@@ -932,60 +932,6 @@ Financial margin for variable-rate products.
 Residual value parameters.
 Automatic processes.
 
-This approach allows business parameters to be modified without changing the core calculation logic.
-
-
-
-### Hay una razón por la que pondría esta sección
-
-
-Tu proyecto se puede entender ahora en **tres niveles**:
-
-
-```text
-                    USER
-                      │
-                      ▼
-              Business Request
-                      │
-                      ▼
-              ┌───────────────┐
-              │  Application  │
-              │    Layer      │
-              └───────┬───────┘
-                      │
-                      ▼
-              ┌───────────────┐
-              │   Financial   │
-              │ Calculation   │
-              │    Engine     │
-              └───────┬───────┘
-                      │
-             ┌────────┼────────┐
-             ▼        ▼        ▼
-           Fixed   Variable  Leasing
-            Rate     Rate    + Residual
-             │        │        │
-             └────────┼────────┘
-                      ▼
-             Amortization Table
-                      │
-                      ▼
-                    MySQL
-
-Eso comunica mucho mejor tu experiencia con crédito automotriz y lógica financiera, que simplemente mencionar Java + Spring Boot + MySQL.
-
-Una corrección importante
-
-En el README no pondría todavía fórmulas matemáticas específicas para calcular la mensualidad, interés, capital, etc., porque no hemos revisado el código exacto de QuoteCalculatorService. No quiero que el README termine describiendo una fórmula que no coincide exactamente con tu implementación.
-
-También mantendría la frase:
-
-"the customer may have the right to acquire the vehicle..."
-
-en lugar de afirmar que siempre puede comprarlo, porque eso depende de las condiciones contractuales del arrendamiento.
-
-
 🧪 Testing & Quality
 
 The project includes automated tests focused on validating service-layer behavior, business validations, exception handling, DAO interactions, and selected web-layer workflows.
